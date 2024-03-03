@@ -8,13 +8,13 @@ RegisterServerEvent("rpx-goldpan:server:TryGoldpan", function(districtChance, di
         if rewardChance <= districtChance then
             local amountChance = math.random(1,10)
             local amount = 1
-            if amountChance <= districtChance2 then                
+            if amountChance <= districtChance2 then
                 amount = 2
             end
 
             exports['rpx-inventory']:AddItem(src, 'goldnugget', tonumber(amount))
         else
-            lib.notify(src, {title = "No gold!", description = "You found nothing!", type = "error"})	
+            lib.notify(src, {title = "No gold!", description = "You found nothing!", type = "error"})
         end
     end
 end)

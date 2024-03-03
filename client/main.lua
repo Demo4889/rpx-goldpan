@@ -50,7 +50,7 @@ function EnablePanningMode()
             Prop = CreateObject(GetHashKey(pname), pc.x, pc.y, pc.z + 0.2, true, true, true)
             AttachEntityToEntity(Prop, playerPed, 387, 0.150, -0.03, 0.010, 90.0, -60.0, -30.0, true, true, false, true, 1, true)
         end
-        lib.notify({title = "Gold panning mode enabled!", type = "inform"})	
+        lib.notify({title = "Gold panning mode enabled!", type = "inform"})
     end
 end
 exports('EnablePanningMode', EnablePanningMode)
@@ -59,7 +59,7 @@ function StartGoldpan()
     SearchingForGold = true
     local success = lib.skillCheck({'easy', 'easy'}, {'1', '2', '3', '4'})
     if not success then IsActive = false ; SearchingForGold = false ; return end
-   
+
     IsActive = true
     local playerPed = PlayerPedId()
     for k,v in pairs(Config.GoldPanAnimations) do
@@ -73,12 +73,12 @@ function StartGoldpan()
     if current_district then
         if Config.DistrictChances[current_district] then
             if not Config.DistrictChances[current_district].chanceToGet then
-                lib.notify({title = "No gold!", description = "You found nothing!", type = "error"})	
+                lib.notify({title = "No gold!", description = "You found nothing!", type = "error"})
             else
                 TriggerServerEvent("rpx-goldpan:server:TryGoldpan", Config.DistrictChances[current_district].chanceToGet, Config.DistrictChances[current_district].chanceOfTwo)
             end
         else
-            lib.notify({title = "No gold!", description = "You found nothing!", type = "error"})	
+            lib.notify({title = "No gold!", description = "You found nothing!", type = "error"})
         end
     end
     IsActive = false
@@ -98,7 +98,7 @@ Citizen.CreateThread(function()
                 if IsEntityInWater(PlayerPedId()) then
                     StartGoldpan()
                 else
-                    lib.notify({title = "Not in water!", description = "You must be in water to pan for gold!", type = "error"})	
+                    lib.notify({title = "Not in water!", description = "You must be in water to pan for gold!", type = "error"})
                 end
             end
 
@@ -106,7 +106,7 @@ Citizen.CreateThread(function()
                 GoldPanning = false
                 DeleteEntity(Prop)
                 Prop = nil
-                lib.notify({title = "Gold panning mode disabled!", type = "inform"})	
+                lib.notify({title = "Gold panning mode disabled!", type = "inform"})
             end
         end
     end
