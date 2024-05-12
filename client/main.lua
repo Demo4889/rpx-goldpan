@@ -88,8 +88,10 @@ end
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(0)
+        local sleep = 1000
+        
         if GoldPanning then
+            sleep = 0
             PromptSetActiveGroupThisFrame(GoldPanPromptGroup, GoldPanningPromptName)
             SetCurrentPedWeapon(PlayerPedId(), GetHashKey('WEAPON_UNARMED'), true)
             RemoveAllPedWeapons(PlayerPedId(), true)
@@ -108,7 +110,10 @@ Citizen.CreateThread(function()
                 Prop = nil
                 lib.notify({title = "Gold panning mode disabled!", type = "inform"})
             end
+        else
+            sleep = 1000
         end
+        Wait(sleep)
     end
 end)
 
